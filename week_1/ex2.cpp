@@ -3,7 +3,7 @@
 
 using namespace std;
 
-typedef struct coord {
+struct coord {
     int x;
     int y;
 
@@ -41,26 +41,28 @@ int main() {
             return 0;
         }
 
-        if (maze[c.x - 1][c.y] < 0)
+        if (maze[c.x - 1][c.y] == 0)
         {
             maze[c.x - 1][c.y] = cur;
             q.push(coord(c.x - 1, c.y));
         }
-        if (maze[c.x + 1][c.y] < 0)
+        if (maze[c.x + 1][c.y] == 0)
         {
             maze[c.x + 1][c.y] = cur;
             q.push(coord(c.x + 1, c.y));
         }
-        if (maze[c.x][c.y - 1] < 0)
+        if (maze[c.x][c.y - 1] == 0)
         {
             maze[c.x][c.y - 1] = cur;
             q.push(coord(c.x, c.y - 1));
         }
-        if (maze[c.x][c.y + 1] < 0)
+        if (maze[c.x][c.y + 1] == 0)
         {
             maze[c.x][c.y + 1] = cur;
             q.push(coord(c.x, c.y + 1));
         }
+
+        q.pop();
     }
     cout << -1;
 

@@ -24,7 +24,7 @@ int string_to_second(string s) {
     return s[0] * 36000 + s[1] * 3600 + s[3] * 600 + s[4] * 60 + s[6] * 10 + s[7] - 1933008;
 }
 
-typedef struct property {
+struct property {
     int total_call;
     int total_time;
 };
@@ -85,6 +85,8 @@ int main() {
 
             cout << properties[command].total_time << endl;
         }
+
+        cin >> command;
     }
     
     return 0;
