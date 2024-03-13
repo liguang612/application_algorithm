@@ -29,19 +29,6 @@ int init(node* n, int start, int end) {
     return n->value;
 }
 
-void display(node* n) {
-    cout << '[' << n->start << ',' << n->end << "] " << n->value << endl;
-
-    if (n->left != NULL)
-    {
-        display(n->left);
-    }
-    if (n->right != NULL)
-    {
-        display(n->right);
-    }
-}
-
 int get_max(node* n, int start, int end) {
     if (start == n->start && end == n->end)
     {
@@ -94,7 +81,6 @@ int main() {
         cin >> arr[i];
     }
     init(head, 0, n - 1);
-    // display(head);
 
     cin >> m;
     for (int i = 0; i < m; i++)
