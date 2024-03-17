@@ -1,53 +1,64 @@
 #include <iostream>
+#include <string>
+#include <unordered_map>
 
 using namespace std;
 
 int main() {
-    int n, m, a[200][200], sum;
+    int len, min = 100000;
+    string str;
+    unordered_map<char, int> map;
 
-    cin >> n >> m;
+    cin >> str;
+    
+    auto left = str.begin();
+    auto right = str.end();
 
-    for (int i = 0; i < n; i++)
+    // Initialize left bound
+    while (left != right)
     {
-        for (int j = 0; j < m; j++)
+        if (map[*left] == 1)
         {
-            cin >> a[i][j];
+            break;
+        }
+        ++map[*(left++)];
+    }
+
+    min = right - left; // Initialize min
+
+    // The most ideal!
+    if (min == 0)
+    {
+        cout << min;
+        return 0;
+    }
+
+    while (right != left)
+    {
+        --right;
+
+        cout << "Left: " << *left << "Right: " << *right << endl;
+        getchar();
+        if (map[*right] == 0)
+        {
+            ++map[*right];
+
+            // Update min
+            if (right - left < min)
+            {
+                min = right - left;
+            }
+        } else {
+            if (left == str.begin())
+            {
+                break;
+            }
+            --map[*(--left)]; // Shift to left
+            ++right; // Restore right
         }
     }
 
-// horizontal
-    for (int i = 0; i < n - 1; i++)
-    {
-        sum = 0;
-        for (int j = 0; j < m; j++)
-        {
-            sum += a[i][j];
-        }
-        cout << sum << ' ';
-    }
-    sum = 0;
-    for (int j = 0; j < m; j++)
-    {
-        sum += a[n - 1][j];
-    }
-    cout << sum << endl;
-
-// vertical
-    for (int j = 0; j < m - 1; j++)
-    {
-        sum = 0;
-        for (int i = 0; i < n; i++)
-        {
-            sum += a[i][j];
-        }
-        cout << sum << ' ';
-    }
-    sum = 0;
-    for (int i = 0; i < n; i++)
-    {
-        sum += a[i][m - 1];
-    }
-    cout << sum;
+    cout << min;
     
     return 0;
 }
