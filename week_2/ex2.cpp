@@ -43,7 +43,7 @@ void attempt(int milestones) {
     {
         if (check(i))
         {
-            cout << milestones << ": ";
+            // cout << milestones << ": ";
             x[milestones] = i; // Store the milestones of route
             f += d[x[milestones - 1]][i]; // Add the distance
             visited[i] = true; // Flag where has gone
