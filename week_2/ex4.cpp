@@ -15,12 +15,6 @@ bool check(int c, int t) {
         return false;
     }
 
-    // If current load is "going to be" :) bigger than record, needn't to go on
-    if (load[t] == record)
-    {
-        return false;
-    }
-
     // Try to find conflict
     for (int i = 1; i < c; i++)
     {
@@ -61,7 +55,10 @@ void attempt(int k) {
             ++load[i];
 
             // Load condition has been checked in check()
-            attempt(k + 1);
+            if (load[i] < record)
+            {
+                attempt(k + 1);
+            }
 
             // Restore
             --load[i];
@@ -70,7 +67,7 @@ void attempt(int k) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
 
     ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
