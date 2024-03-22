@@ -3,164 +3,150 @@
 
 using namespace std;
 
-bool v[13];
-int c[13][13], cmin = INT16_MAX, cond = 0, d[13], firstPoint[6], K, load[6], n, nbr, nextPoint[13], Q;
-unsigned int dist = 0, record = -1;
+bool visited[13];
+int best = INT16_MAX, c[13][13], cmin = INT16_MAX, d[13], f = 0, K, load[6], n, nbR, Q, segments, x[13], y[6];
 
-bool checkPoint(int point, int k) {
-    // If this point has been delivered
-    if (point > 0 && v[point])
+bool checkX(int v, int k) {
+    if (v > 0 && visited[v])
     {
         return false;
     }
-    //Oh no, the car can't load any more
-    if (load[k] + d[point] > Q)
+    if (load[k] + d[v] > Q)
     {
         return false;
     }
     return true;
 }
 
-void attemptPoint(int fP, int k) {
-    if (!fP)
+void tryX(int s, int k) {
+    if (!s)
     {
         if (k < K)
         {
-            attemptPoint(firstPoint[k], k + 1);
-            return;
+            tryX(y[k + 1], k + 1);
         }
+        return;
     }
-    for (int i = 0; i <= n; i++)
+    for (int v = 0; v <= n; v++)
     {
-        if (checkPoint(i, k))
+        if (checkX(v, k))
         {
-            // Update
-            nextPoint[fP] = i;
-            v[i] = true;
-            dist += c[fP][i];
-            load[k] += d[i];
-            ++cond;
+            x[s] = v;
+            visited[v] = true;
+            f += c[s][v];
+            load[k] += d[v];
+            ++segments;
 
-            if (!i)
+            if (v > 0)
             {
-                if (dist + (n + nbr - cond) * cmin < record)
+                if (f + (n + nbR - segments) * cmin < best)
                 {
-                    attemptPoint(i, k);
-                }
+                    tryX(v, k);
+                } 
             } else {
                 if (k == K)
                 {
-                    if (cond == n + nbr)
+                    if (segments == n + nbR)
                     {
-                        record = min(dist, record);
-                    }
+                        best = min(best, f);
+                    } 
                 } else {
-                    if (dist + (n + nbr - cond) * cmin < record)
+                    if (f + (n + nbR - segments) * cmin < best)
                     {
-                        attemptPoint(firstPoint[k + 1], k + 1);
+                        tryX(y[k + 1], k + 1);
                     }
                 }
             }
-
-            // Restore
-            --cond;
-            dist -= c[fP][i];
-            load[k] -= d[i];
-            v[i] = false;
+            visited[v] = false;
+            f -= c[s][v];
+            load[k] -= d[v];
+            --segments;
         }
     }
 }
 
-bool checkCar(int point, int k) {
-    // Yeah, car returned home
-    if (point == 0)
+bool checkY(int v, int k) {
+    if (!v)
     {
         return true;
     }
-    // Oh no, car can't load more
-    if (load[k] + d[point] > Q)
+    if (load[k] + d[v] > Q)
     {
         return false;
     }
-    // This point has been delivered
-    if (v[point])
+    if (visited[v])
     {
         return false;
     }
-
     return true;
 }
 
-void attemptCar(int k) {
+void tryY(int k) {
     int s = 0;
 
-    if (firstPoint[k - 1] > 0)
+    if (y[k - 1] > 0)
     {
-        s = firstPoint[k - 1] + 1; // Set the lower bound of value can be the first point of this car
+        s = y[k - 1] + 1;
     }
-    for (int i = s; i <= n; i++)
+    
+    for (int v = s; v <= n; v++)
     {
-        if (checkCar(i, k))
+        if (checkY(v, k))
         {
-            firstPoint[k] = i;
+            y[k] = v;
 
-            if (!i)
+            if (v)
             {
-                ++cond;
+                ++segments;
+                visited[v] = true;
+                f += c[0][v];
+                load[k] += d[v];
             }
-            
-            //Update
-            dist += c[0][i];
-            load[k] += d[i];
-            v[i] = true;
 
             if (k < K)
             {
-                attemptCar(k + 1);
+                tryY(k + 1);
             } else {
-                nbr = cond;
-
+                nbR = segments;
+                tryX(y[1], 1);
             }
 
-            // Restore
-            dist -= c[0][i];
-            load[k] -= d[i];
-            v[i] = false;
-
-            if (!i)
+            if (v)
             {
-                --cond;
+                --segments;
+                load[k] -= d[v];
+                visited[v] = false;
+                f -= c[0][v];
             }
         }
-        
     }
-    
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
     cin >> n >> K >> Q;
 
-    // Input demand
     for (int i = 1; i <= n; i++)
     {
         cin >> d[i];
     }
-    
-    // Input distance
-    for (int i = 1; i <= n; i++)
+
+    for (int i = 0; i <= n; i++)
     {
-        for (int j = 1; j <= n; j++)
+        for (int j = 0; j <= n; j++)
         {
             cin >> c[i][j];
+            if (i != j) cmin = min(c[i][j], cmin);
         }
-    }
+    }    
 
-    firstPoint[0] = 0;
-    attemptCar(1);
+    y[0] = 0;
 
-    cout << record;
-    
+    tryY(1);
+
+    cout << best;
+
     return 0;
 }
