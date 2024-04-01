@@ -18,22 +18,6 @@ bool check(int v) {
     return load; // Return any seats else or not
 }
 
-// void displayv() {
-//     for (int i = 0; i < 2 * n + 1; i++)
-//     {
-//         cout << visited[i] << ' ';
-//     }
-//     cout << endl;
-// }
-
-// void displayx() {
-//     for (int i = 0; i < 2 * n + 1; i++)
-//     {
-//         cout << x[i] << ' ';
-//     }
-//     cout << endl;
-// }
-
 void updateBest() {
     best = min(f + d[x[2 * n]][0], best);
 }
