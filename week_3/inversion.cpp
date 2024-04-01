@@ -14,7 +14,7 @@ int mergeAndCount(int* arr, int left, int mid, int right) {
             temp[k++] = arr[i++];
         } else {
             // Validity found!
-            count += mid - i; // Because left had been sorted, so ... 
+            count = (count + mid - i) % 1000000007; // Because left had been sorted, so ... 
             temp[k++] = arr[j++];
         }
     }
@@ -44,7 +44,7 @@ int merge(int arr[], int left, int right) {
     int mid = (left + right) / 2;
 
     // Example: 3, 1, 5 | 4, 2 => count part (1,3,5) + count part (2,4) + count between (1,3,5) and (2,4)
-    return (merge(arr, left, mid) + (merge(arr, mid + 1, right) % 1000000007 + mergeAndCount(arr, left, mid + 1, right))) % 1000000007;
+    return (merge(arr, left, mid) + (merge(arr, mid + 1, right) + mergeAndCount(arr, left, mid + 1, right)) % 1000000007) % 1000000007;
 }
 
 int main() {
