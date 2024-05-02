@@ -1,15 +1,14 @@
 #include <iostream>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
-int main () {
-    int arr[] = {4,5,3,2};
+int main() {
+    vector<int> v;
 
-    sort(arr, arr + 3);
+    v.push_back(12);
 
-    for (int i = 0; i < 4; i++)
-    {
-        cout << arr[i];
-    }
+    cout << *(v.end() - 1);
+
+    return 0;
 }
