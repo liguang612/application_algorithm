@@ -1,14 +1,16 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 
 using namespace std;
 
 int main() {
-    vector<int> v;
+    vector<string> arr = { "Quoc", "Long", "Hai" };
+    string tmp = "Long";
 
-    v.push_back(12);
+    reverse(tmp.begin(), tmp.end());
 
-    cout << *(v.end() - 1);
+    cout << tmp;
 
     return 0;
 }
