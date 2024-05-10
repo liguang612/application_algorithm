@@ -20,6 +20,9 @@
         "xlocmon": "cpp",
         "xlocnum": "cpp",
         "xloctime": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "xiosbase": "cpp",
+        "deque": "cpp",
+        "utility": "cpp"
     }
 }

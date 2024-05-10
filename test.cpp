@@ -1,16 +1,13 @@
 #include <iostream>
 #include <algorithm>
-#include <vector>
+#include <deque>
 
 using namespace std;
 
 int main() {
-    vector<string> arr = { "Quoc", "Long", "Hai" };
-    string tmp = "Long";
+    deque<int> dq;
 
-    reverse(tmp.begin(), tmp.end());
-
-    cout << tmp;
+    cout << dq.front();
 
     return 0;
 }
