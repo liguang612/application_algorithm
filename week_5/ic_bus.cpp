@@ -8,7 +8,7 @@ using namespace std;
 int c[5001], s[5001], d[5001], m, n;
 vector<int> tree[5001];
 
-int bfs(int root) {
+void bfs(int root) {
     int lv = 0;
     queue<int> q;
     vector<int> next;
