@@ -23,6 +23,7 @@
         "xmemory": "cpp",
         "xiosbase": "cpp",
         "deque": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cstdlib": "cpp"
     }
 }
