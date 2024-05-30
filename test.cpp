@@ -1,19 +1,42 @@
 #include <iostream>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
-bool check(int n) {
-    for (int i = 2; i < n / 2; i++)
-    {
-        if (n % i == 0)
-        {
-            return false;
-        }
+vector<int> twoSum(vector<int>& sum, int target) {
+    vector<int> res;
 
+    int sz = sum.size();
+
+    vector<int>::iterator it;
+    for (int i = 0; i < sz; i++)
+    {
+        if ((it = find(sum.begin(), sum.end(), target - sum[i])) != sum.end())
+        {
+            if (it - sum.begin() != i)
+            {
+                res.push_back(i);
+                res.push_back(it - sum.begin());
+
+                return res;
+            }
+
+        }
     }
-    return true;
+
+    return res;
 }
 
 int main() {
-    cout << check(1000000009);
+    vector<int> v = { 3,2,4 };
+
+    auto r = twoSum(v, 6);
+
+    for (auto&& i : r)
+    {
+        cout << i << ' ';
+    }
+
+    return 0;
 }
