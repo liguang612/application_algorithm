@@ -24,6 +24,7 @@
         "xiosbase": "cpp",
         "deque": "cpp",
         "utility": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "xtree": "cpp"
     }
 }

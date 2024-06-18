@@ -1,3 +1,6 @@
+// Có n địa điểm và k nhân viên để đi lấy đồ.
+// Xuất phát từ 0, hãy tạo lộ trình đi lấy đồ sao cho path của nhân viên dài nhất là min.
+
 #include <iostream>
 #include <vector>
 
@@ -5,7 +8,7 @@ using namespace std;
 
 int main()
 {
-    // freopen("input.txt", "r", stdin);
+    freopen("tc4_4.txt", "r", stdin);
 
     bool visited[1001];
     int n, k, ** arr;

@@ -1,3 +1,6 @@
+// Cho dãy số, chọn dãy con (không cần liên tiếp) sao cho chẵn lẻ xen kẽ và tăng ngặt.
+// In ra độ dài dãy con đó
+
 #include <iostream>
 #include <algorithm>
 

@@ -1,3 +1,8 @@
+// Xuất phát từ 0, đón khách ở [1..n], trả khách ở i + n
+// Không được phép có quá k khách cùng 1 thời điểm, mỗi khách không được ngồi trên xe quá D km.
+// c[i][j]: khoảng cách từ i -> j
+// Tìm giá trị của path ngắn nhất.
+
 #include <iostream>
 #include <vector>
 
