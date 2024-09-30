@@ -4,18 +4,8 @@ using namespace std;
 
 int m, n;
 
-// void display(int** a, int m, int n) {
-//     for (int i = 0; i < n; i++)
-//     {
-//         for (int j = 0; j < m; j++)
-//         {
-//             cout << a[i][j] << ' ';
-//         }
-//         cout << endl;
-//     }
-// }
-
-int find_max(int* a) {
+int find_max(int *a)
+{
     int max = 0;
 
     for (int i = 0; i < m; i++)
@@ -35,7 +25,7 @@ int find_max(int* a) {
                 break;
             }
         }
-        
+
         int tmp;
         max = max < (tmp = (--k - ++j + 1) * a[i]) ? tmp : max;
     }
@@ -43,14 +33,15 @@ int find_max(int* a) {
     return max;
 }
 
-int main() {
+int main()
+{
     // freopen("input.txt", "r", stdin);
 
     int **a, max = 0;
 
     cin >> n >> m;
 
-    a = new int*[n];
+    a = new int *[n];
 
     a[0] = new int[m];
     for (int i = 0; i < m; i++)
@@ -61,7 +52,7 @@ int main() {
     for (int i = 1; i < n; i++)
     {
         a[i] = new int[m];
-        
+
         for (int j = 0; j < m; j++)
         {
             cin >> a[i][j];
@@ -78,7 +69,7 @@ int main() {
 
         max = max < tmp ? tmp : max;
     }
-    
+
     cout << max;
 
     return 0;

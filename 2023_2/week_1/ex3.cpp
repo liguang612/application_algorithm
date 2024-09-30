@@ -6,7 +6,8 @@ using namespace std;
 
 int c, **rmq;
 
-void gen(int n) {
+void gen(int n)
+{
     int tmp = 1, s_tmp = 1;
 
     for (int i = 1; i < c; i++)
@@ -22,7 +23,8 @@ void gen(int n) {
     }
 }
 
-void display(int n) {
+void display(int n)
+{
     int tmp = 1, s_tmp = 0;
 
     for (int i = 0; i < c; i++)
@@ -38,7 +40,8 @@ void display(int n) {
     }
 }
 
-int read() {
+int read()
+{
     char c;
     int tmp = 0;
 
@@ -49,11 +52,12 @@ int read() {
             return tmp;
         }
         tmp = tmp * 10 + c - 48;
-    }   
+    }
 }
 
-int main() {
-    freopen("input.txt", "r", stdin);
+int main()
+{
+    // freopen("input.txt", "r", stdin);
 
     int a, b, m, n, sum = 0, tmp = 1, s_tmp = 1;
 
@@ -61,7 +65,7 @@ int main() {
 
     c = (int)log2(n) + 1;
 
-    rmq = new int*[c];
+    rmq = new int *[c];
 
     rmq[0] = new int[n];
     read();
@@ -69,7 +73,7 @@ int main() {
     {
         rmq[0][i] = read();
     }
-    
+
     for (int i = 1; i < c; i++)
     {
         rmq[i] = new int[n - s_tmp];
@@ -79,13 +83,14 @@ int main() {
     }
     gen(n);
     // display(n);
-    
+
     cin >> m;
-    
+
     read();
     for (int i = 0; i < m; i++)
     {
-        a = read(); b = read();
+        a = read();
+        b = read();
 
         int tmp = (int)log2(b - a + 1);
 
@@ -93,6 +98,6 @@ int main() {
     }
 
     cout << sum;
-    
+
     return 0;
 }
