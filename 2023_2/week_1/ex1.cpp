@@ -4,14 +4,17 @@
 
 using namespace std;
 
-bool is_phonenumber(string s) {
+bool is_phonenumber(string s)
+{
     if (s.length() != 10)
     {
         return false;
     }
-    
-    for (char c : s) {
-        if (!isdigit(c)) {
+
+    for (char c : s)
+    {
+        if (!isdigit(c))
+        {
             return false;
         }
     }
@@ -19,19 +22,22 @@ bool is_phonenumber(string s) {
     return true;
 }
 
-int string_to_second(string s) {
+int string_to_second(string s)
+{
     // return ((s[0] - 48) * 10 + s[1] - 48) * 3600 + ((s[3] - 48) * 10 + s[4] - 48) * 60 + (s[6] - 48) * 10 + s[7] - 48;
     return s[0] * 36000 + s[1] * 3600 + s[3] * 600 + s[4] * 60 + s[6] * 10 + s[7] - 1933008;
 }
 
-struct property {
+struct property
+{
     int total_call;
     int total_time;
 };
 
-int main() {
+int main()
+{
     bool check = true;
-    int _duration, total_call = 0;
+    int total_call = 0;
     string command, date, from_number, from_time, to_number, to_time;
     unordered_map<string, property> properties;
 
@@ -52,7 +58,7 @@ int main() {
         {
             check = check && is_phonenumber(to_number);
         }
-        
+
         cin >> date;
         cin >> from_time;
         cin >> to_time;
@@ -88,6 +94,6 @@ int main() {
 
         cin >> command;
     }
-    
+
     return 0;
 }

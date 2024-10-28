@@ -23,23 +23,6 @@ void gen(int n)
     }
 }
 
-void display(int n)
-{
-    int tmp = 1, s_tmp = 0;
-
-    for (int i = 0; i < c; i++)
-    {
-        for (int j = 0; j < n - s_tmp; j++)
-        {
-            cout << rmq[i][j] << ' ';
-        }
-        cout << endl;
-
-        s_tmp += tmp;
-        tmp *= 2;
-    }
-}
-
 int read()
 {
     char c;
@@ -82,7 +65,6 @@ int main()
         s_tmp += tmp;
     }
     gen(n);
-    // display(n);
 
     cin >> m;
 

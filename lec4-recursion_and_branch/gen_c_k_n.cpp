@@ -6,13 +6,15 @@ using namespace std;
 int k, n;
 vector<int> combination;
 
-void display() {
+void display()
+{
   for (int i : combination)
     cout << i << ' ';
   cout << endl;
 }
 
-void attempt() {
+void attempt()
+{
   if (combination.size() == k)
   {
     display();
@@ -27,7 +29,8 @@ void attempt() {
   }
 }
 
-int main() {
+int main()
+{
   // freopen("input.txt", "r", stdin);
 
   cin >> k >> n;
