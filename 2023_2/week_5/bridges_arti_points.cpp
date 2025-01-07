@@ -37,7 +37,7 @@ void dfs(int v, int pv) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
+    // freopen("input.txt", "r", stdin);
 
     cin >> N >> M;
     for (int i = 0; i < M; ++i) {
